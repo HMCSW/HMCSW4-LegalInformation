@@ -1,0 +1,134 @@
+{
+  "url": {
+    "main": "www.domain.com",
+    "api": "api.domain.com",
+    "ssl": "https://",
+    "path": "",
+    "without_sub": "domain.com",
+    "force": false
+  },
+  "maintenance": {
+    "enabled": false,
+    "reason": "Currently Maintenance"
+  },
+  "host": {
+    "secret": "ABCD1234EFGH"
+  },
+  "dev_mode": true,
+  "name": "HMCSW",
+  "currency": {
+    "name": "Euro",
+    "symbol": "€",
+    "code": "EUR"
+  },
+  "password": {
+    "pepper": "ABCD1234EFGH",
+    "cost": "16"
+  },
+  "service": {
+    "statuspage": {
+      "enabled": false
+    },
+    "socketserver": {
+      "NOTE": "HAS CURRENTLY NO FUNCTIONALITY!",
+      "url": "",
+      "port": "12345",
+      "secret": ""
+    },
+    "traduora": {
+      "enabled": false,
+      "url": "https://translate.domain.com",
+      "project_id": "",
+      "username": "",
+      "password": "",
+      "modules": []
+    },
+    "trustpilot": {
+      "enabled": false,
+      "name": "HMCSW",
+      "email": "hmcsw+X@invite.trustpilot.com"
+    },
+    "faq": {
+      "enabled": false
+    },
+    "mail": {
+      "enabled": false,
+      "host": "mail.server.domain.com",
+      "username": "dev@domain.com",
+      "password": "",
+      "port": "587",
+      "reply_to": "support@domain.com",
+      "systemmail": [
+        "1"
+      ],
+      "SMTPSecure": "tls",
+      "SMTPOptions": {
+        "socket": {
+          "bindto": "127.0.0.1:0"
+        }
+      }
+    },
+    "discord": {
+      "enabled": false,
+      "token": "Bottoken",
+      "notify_role": "123",
+      "customer_role": "123",
+      "guild_id": "123",
+      "channel": {
+        "error": "1",
+        "service": "1",
+        "invoice": "1",
+        "ticket": "1",
+        "user": "1",
+        "partner": "1",
+        "news": "1",
+        "status": "1"
+      }
+    },
+    "ip_info": {
+      "enabled": false,
+      "token": ""
+    }
+  },
+  "legal": {
+    "fairCommerce": false,
+    "tax_number": false,
+    "ust_number": "DE123",
+    "tax": "19",
+    "show_tax": false,
+    "owner": {
+      "company": "Company",
+      "firstname": "Firstname",
+      "lastname": "Lastname",
+      "street": "Street",
+      "street_nr": "1",
+      "city": "City",
+      "postcode": "12345",
+      "country": "Deutschland",
+      "telephone": "+49 127001"
+    },
+    "represented_by": [],
+    "scope": [
+      "domain.com"
+    ]
+  },
+  "support": {
+    "support_mail": "service@domain.com",
+    "telephone": "+49 127 001",
+    "supportpin": {
+      "enabled": false
+    }
+  },
+  "payment": {
+    "bank_transfer": {
+      "enabled": true,
+      "data": {
+        "owner": "Konto Ownername",
+        "iban": "DE00",
+        "bic": "00",
+        "bank_name": "Bankname"
+      }
+    }
+  },
+  "blocked_ip_address": []
+}

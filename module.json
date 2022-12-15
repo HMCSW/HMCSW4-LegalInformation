@@ -1,0 +1,16 @@
+{
+  "name": "legalInformation",
+  "description": "legalInformation",
+  "identifier": "legalInformation",
+  "title": "legalInformation",
+  "version": "1.0.0",
+  "type": "general",
+  "argument": [],
+  "authors": [
+    {
+      "name": "",
+      "email": ""
+    }
+  ],
+  "minimumCoreVersion": "35"
+}
