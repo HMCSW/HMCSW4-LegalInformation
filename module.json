@@ -3,14 +3,15 @@
   "description": "legalInformation",
   "identifier": "legalInformation",
   "title": "legalInformation",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "type": "general",
   "argument": [],
   "authors": [
     {
-      "name": "",
-      "email": ""
+      "name": "Moritz Walter",
+      "email": "moritz.walter@the-systems.eu"
     }
   ],
-  "minimumCoreVersion": "35"
+  "minimumCoreVersion": "56",
+  "module_id": 25
 }

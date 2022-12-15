@@ -1,9 +1,0 @@
-{
-  "host": "127.0.0.1",
-  "user": "",
-  "database": "",
-  "password": "",
-  "port": 3306,
-  "strict": true,
-  "engine": "mariaDB"
-}
