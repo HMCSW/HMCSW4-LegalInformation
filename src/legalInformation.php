@@ -3,17 +3,17 @@
 namespace hmcswModule\legalInformation\src;
 
 use hmcsw\hmcsw4;
-use hmcsw\routing\routing;
-use hmcsw\service\general\faqService;
+use hmcsw\routing\Routing;
+use hmcsw\service\general\FaqService;
 use hmcsw\service\general\event\Events;
 use hmcsw\objects\user\invoice\Invoice;
 use hmcsw\service\templates\SeoService;
-use hmcsw\service\templates\twigService;
+use hmcsw\service\templates\TwigService;
 use hmcsw\service\templates\LanguageService;
 use hmcsw\service\general\event\EventService;
-use hmcsw\service\module\moduleGeneralRepository;
+use hmcsw\service\module\ModuleGeneralRepository;
 
-class legalInformation implements moduleGeneralRepository
+class legalInformation implements ModuleGeneralRepository
 {
 
   private readonly array $config;
@@ -22,38 +22,38 @@ class legalInformation implements moduleGeneralRepository
   {
     $text = $this->getImprint();
 
-    twigService::renderPage("legal/imprint.twig", ["all" => $text], LanguageService::getMessage('site.legal.imprint'),);
+    TwigService::renderPage("legal/imprint.twig", ["all" => $text], LanguageService::getMessage('site.legal.imprint'),);
   }
 
   public function privacy (): void
   {
     $text = $this->getPrivacy();
 
-    twigService::renderPage("legal/privacy.twig", ["all" => $text], LanguageService::getMessage('site.legal.privacy'),);
+    TwigService::renderPage("legal/privacy.twig", ["all" => $text], LanguageService::getMessage('site.legal.privacy'),);
   }
 
   public function terms (): void
   {
     $text = $this->getTerms();
 
-    twigService::renderPage("legal/terms.twig", ["all" => $text], LanguageService::getMessage('site.legal.terms'),);
+    TwigService::renderPage("legal/terms.twig", ["all" => $text], LanguageService::getMessage('site.legal.terms'),);
   }
 
   public function withdrawal (): void
   {
     $text = $this->getWithdrawal();
 
-    twigService::renderPage("legal/withdrawal.twig", ["all" => $text], LanguageService::getMessage('site.legal.withdrawal'),);
+    TwigService::renderPage("legal/withdrawal.twig", ["all" => $text], LanguageService::getMessage('site.legal.withdrawal'),);
   }
 
   public function parents (): void
   {
     $text = $this->getParentInfo();
 
-    twigService::renderPage("legal/parents.twig", ["all" => $text], LanguageService::getMessage('site.legal.parents'),);
+    TwigService::renderPage("legal/parents.twig", ["all" => $text], LanguageService::getMessage('site.legal.parents'),);
   }
 
-  public function addRoutes (routing $routing): void
+  public function addRoutes (Routing $routing): void
   {
     $routing->router->any('/legal/imprint', [$this, 'imprint']);
     $routing->router->any('/legal/privacy', [$this, 'privacy']);
@@ -62,7 +62,7 @@ class legalInformation implements moduleGeneralRepository
     $routing->router->any('/legal/parents', [$this, 'parents']);
   }
 
-  public function addApiRoutes (routing $routing): void
+  public function addApiRoutes (Routing $routing): void
   {
     // TODO: Implement addApiRoutes() method.
   }
