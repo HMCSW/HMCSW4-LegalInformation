@@ -2,6 +2,8 @@
 
 namespace hmcswModule\legalInformation\src;
 
+use hmcsw\controller\api\ApiController;
+use hmcsw\controller\web\WebController;
 use hmcsw\hmcsw4;
 use hmcsw\routing\Routing;
 use hmcsw\service\general\FaqService;
@@ -53,18 +55,18 @@ class legalInformation implements ModuleGeneralRepository
     TwigService::renderPage("legal/parents.twig", ["all" => $text], LanguageService::getMessage('site.legal.parents'),);
   }
 
-  public function addRoutes (Routing $routing): void
+  public function addApiRoutes (Routing $routing, ApiController $apiController): void
+  {
+
+  }
+
+  public function addRoutes (Routing $routing, WebController $webController): void
   {
     $routing->router->any('/legal/imprint', [$this, 'imprint']);
     $routing->router->any('/legal/privacy', [$this, 'privacy']);
     $routing->router->any('/legal/terms', [$this, 'terms']);
     $routing->router->any('/legal/withdrawal', [$this, 'withdrawal']);
     $routing->router->any('/legal/parents', [$this, 'parents']);
-  }
-
-  public function addApiRoutes (Routing $routing): void
-  {
-    // TODO: Implement addApiRoutes() method.
   }
 
   public function initial (): void
