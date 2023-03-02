@@ -13,20 +13,12 @@ class legalInformation implements ModuleGeneralRepository
 {
 
   private readonly array $config;
-  private WebController $webController;
 
   public function __construct()
   {
     $this->config = [];
   }
-
-  public function imprint(): void
-  {
-    $text = $this->getImprint();
-
-    $this->webController->renderPage("legal/imprint.twig", ["all" => $text], LanguageService::getMessage('site.legal.imprint'),);
-  }
-
+  
   public static function getImprint(): array
   {
     if (!file_exists(__DIR__ . "/../config/imprint.yaml")) return [];
@@ -34,14 +26,7 @@ class legalInformation implements ModuleGeneralRepository
 
     return yaml_parse($file);
   }
-
-  public function privacy(): void
-  {
-    $text = $this->getPrivacy();
-
-    $this->webController->renderPage("legal/privacy.twig", ["all" => $text], LanguageService::getMessage('site.legal.privacy'),);
-  }
-
+  
   public static function getPrivacy(): array
   {
     if (!file_exists(__DIR__ . "/../config/privacy.yaml")) return [];
@@ -49,14 +34,7 @@ class legalInformation implements ModuleGeneralRepository
 
     return yaml_parse($file);
   }
-
-  public function terms(): void
-  {
-    $text = $this->getTerms();
-
-    $this->webController->renderPage("legal/terms.twig", ["all" => $text], LanguageService::getMessage('site.legal.terms'),);
-  }
-
+  
   public static function getTerms(): array
   {
     if (!file_exists(__DIR__ . "/../config/terms.yaml")) return [];
@@ -64,14 +42,7 @@ class legalInformation implements ModuleGeneralRepository
 
     return yaml_parse($file);
   }
-
-  public function withdrawal(): void
-  {
-    $text = $this->getWithdrawal();
-
-    $this->webController->renderPage("legal/withdrawal.twig", ["all" => $text], LanguageService::getMessage('site.legal.withdrawal'),);
-  }
-
+  
   public static function getWithdrawal(): array
   {
     if (!file_exists(__DIR__ . "/../config/withdrawal.yaml")) return [];
@@ -80,14 +51,7 @@ class legalInformation implements ModuleGeneralRepository
 
     return yaml_parse($file);
   }
-
-  public function parents(): void
-  {
-    $text = $this->getParentInfo();
-
-    $this->webController->renderPage("legal/parents.twig", ["all" => $text], LanguageService::getMessage('site.legal.parents'),);
-  }
-
+  
   public static function getParentInfo(): array
   {
     if (!file_exists(__DIR__ . "/../config/parents.yaml")) return [];
@@ -103,12 +67,33 @@ class legalInformation implements ModuleGeneralRepository
 
   public function addRoutes(Routing $routing, WebController $webController): void
   {
-    $this->webController = $webController;
-    $routing->router->any('/legal/imprint', [$this, 'imprint']);
-    $routing->router->any('/legal/privacy', [$this, 'privacy']);
-    $routing->router->any('/legal/terms', [$this, 'terms']);
-    $routing->router->any('/legal/withdrawal', [$this, 'withdrawal']);
-    $routing->router->any('/legal/parents', [$this, 'parents']);
+    $module = $this;
+
+    $routing->router->any('/legal/imprint', function() use ($webController, $module) {
+      $text = $module->getImprint();
+
+      $webController->renderPage("legal/imprint.twig", ["all" => $text], LanguageService::getMessage('site.legal.imprint'));
+    });
+    $routing->router->any('/legal/privacy', function() use ($webController, $module) {
+      $text = $module->getPrivacy();
+
+      $webController->renderPage("legal/privacy.twig", ["all" => $text], LanguageService::getMessage('site.legal.privacy'));
+    });
+    $routing->router->any('/legal/terms', function () use ($webController, $module) {
+      $text = $module->getTerms();
+
+      $webController->renderPage("legal/terms.twig", ["all" => $text], LanguageService::getMessage('site.legal.terms'));
+    });
+    $routing->router->any('/legal/withdrawal', function () use ($webController, $module) {
+      $text = $module->getWithdrawal();
+
+      $webController->renderPage("legal/withdrawal.twig", ["all" => $text], LanguageService::getMessage('site.legal.withdrawal'));
+    });
+    $routing->router->any('/legal/parents', function () use ($webController, $module) {
+      $text = $module->getParentInfo();
+
+      $webController->renderPage("legal/parents.twig", ["all" => $text], LanguageService::getMessage('site.legal.parents'));
+    });
   }
 
   public function initial(): void
